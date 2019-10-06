@@ -24,3 +24,5 @@ yarn-error.log*
 
 .idea/
 schema.json
+.graphqlconfig
+__generated__/
