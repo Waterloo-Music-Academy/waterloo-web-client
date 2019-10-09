@@ -5,4 +5,4 @@ module.exports = {
   schema: "./schema.json",
   extensions: ['js', 'jsx'],
   exclude: ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**"],
-}
+};

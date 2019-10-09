@@ -1,6 +1,7 @@
 import React from 'react';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {createFragmentContainer} from 'react-relay';
 import ReactMarkdown from 'react-markdown';
+import graphql from 'babel-plugin-relay/macro';
 
 class Article extends React.Component {
   render() {
@@ -23,7 +24,7 @@ class Article extends React.Component {
 
 export default createFragmentContainer(Article, {
   article: graphql`
-    fragment Article_article on ArticleNode @argumentDefinitions(ID: {type: "ID"}){
+    fragment Article_article on ArticleNode {
         title
         body
         authors {
