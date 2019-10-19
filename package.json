@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-plugin-relay": "^6.0.0",
     "bootstrap": "^4.3.1",
+    "farce": "^0.2.8",
+    "found": "^0.4.9",
+    "found-relay": "^0.5.0",
     "graphql": "^14.5.8",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-markdown": "^4.2.2",
     "react-relay": "^6.0.0",
-    "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "reactstrap": "^8.0.1",
     "relay-compiler": "^6.0.0",
@@ -36,6 +37,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "babel-plugin-import-graphql": "^2.7.0",
     "cross-env": "^6.0.3"
   }
 }

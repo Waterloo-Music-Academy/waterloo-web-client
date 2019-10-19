@@ -1,6 +1,6 @@
 {
   "name": "Waterloo API",
-  "schemaPath": "schema.json",
+  "schemaPath": "./schema.json",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {

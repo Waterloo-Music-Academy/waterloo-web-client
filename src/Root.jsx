@@ -1,17 +1,26 @@
 import React, {Component} from 'react';
-import { Router, Route, BrowserRouter } from "react-router-dom";
-import HomePage from './home/HomePage';
-import ArticlePage from './article/ArticlePage';
+import {Route, BrowserRouter } from "react-router-dom";
+import HomePage from './HomePage';
+import ArticlePage from './ArticlePage';
 
 class Root extends Component {
   render() {
     return (
-      <div className="container">
-        <BrowserRouter>
-          <Route path="/" component={HomePage} />
-          <Route path="/news/:id" component={ArticlePage} />
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <div className="wrapper">
+          <nav id="sidebar">
+            <div className="sidebar-header">
+              <h3 className="text-center">Waterloo Music Academy</h3>
+            </div>
+          </nav>
+          <div id="content">
+            <div className="container-fluid">
+              <Route path="/" component={HomePage} />
+              <Route path="/news/:id" component={ArticlePage} />
+            </div>
+          </div>
+        </div>
+      </BrowserRouter>
     )
   }
 }

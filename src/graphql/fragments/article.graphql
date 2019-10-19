@@ -1,0 +1,11 @@
+fragment fragments_article on ArticleNode {
+    title
+    body
+    authors {
+        edges {
+            node {
+                name
+            }
+        }
+    }
+}
