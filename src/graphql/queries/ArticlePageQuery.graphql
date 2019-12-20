@@ -1,7 +1,0 @@
-#import "../fragments/article.graphql"
-
-query queries_ArticlePageQuery($id:ID!) {
-    article(id: $id) {
-        ...fragments_article
-    }
-}

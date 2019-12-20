@@ -1,11 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserProtocol, queryMiddleware } from 'farce';
+import {
+  createFarceRouter,
+  createRender
+} from 'found';
+import { Resolver } from 'found-relay';
+
+import './static/css/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
-import Root from './Root';
+import routeConfig from './routes.config';
+import environment from './relayEnvironment';
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+
+const Router = createFarceRouter({
+  historyProtocol: new BrowserProtocol(),
+  historyMiddlewares: [queryMiddleware],
+  routeConfig,
+  render: createRender({})
+});
+ReactDOM.render(<Router resolver={new Resolver(environment)} />, document.getElementById('root'));
 
 
 // If you want your app to work offline and load faster, you can change

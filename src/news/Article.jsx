@@ -1,7 +1,7 @@
 import React from 'react';
 import {createFragmentContainer} from 'react-relay';
 import ReactMarkdown from 'react-markdown';
-import {articleFragment} from './fragments';
+import { graphql } from 'graphql';
 
 class Article extends React.Component {
   render() {
@@ -15,7 +15,6 @@ class Article extends React.Component {
           <h1>{article.title}</h1>
           <ReactMarkdown source={article.body} />
         </div>
-
       )
     }
 
@@ -24,5 +23,19 @@ class Article extends React.Component {
 }
 
 export default createFragmentContainer(Article, {
-  article: articleFragment
+  article: graphql`
+      fragment Article_article on ArticleNode {
+          createdAt
+          title
+          standfirst
+          body
+          authors {
+              edges {
+                  node {
+                      name
+                  }
+              }
+          }
+      }
+  `
 });
