@@ -7,7 +7,7 @@ import {
 } from 'found';
 import { Resolver } from 'found-relay';
 
-import './static/css/index.css';
+import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
 import routeConfig from './routes.config';

@@ -5,7 +5,7 @@ import {
   Store
 } from 'relay-runtime';
 
-const endpoint = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8000/graphql' : '';
+const endpoint = process.env.NODE_ENV === 'development' ? 'http://debian:8000/graphql' : '';
 
 function fetchQuery(operation,
                     variables,

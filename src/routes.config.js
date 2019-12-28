@@ -3,34 +3,39 @@ import {
   makeRouteConfig
 } from 'found';
 import App from './App';
-import Article from './news/Article'
 import React from 'react';
-import { graphql } from 'graphql';
-import Articles from './news/Articles';
+import graphql from 'babel-plugin-relay/macro';
+import MainPage from './MainPage';
+import ArticleContainer from './Article'
+import ArticleListContainer from './ArticleList';
 
 const routeConfig = makeRouteConfig(
   <Route
     path="/"
     Component={App}
   >
+    <Route Component={MainPage} />
     <Route path="news">
       <Route
-        Component={Articles}
+        Component={ArticleListContainer}
         query={graphql`
-            query routes_Articles_Query {
-                articles {
-                    edges {
-                        node {
-                            ...Article_article
-                        }
-                    }
-                }
+            query routes_ArticleList_Query(
+                $count: Int!
+                $cursor: String
+            ) {
+                ...ArticleList_articles @arguments(count: $count, cursor: $cursor)
             }
         `}
+        prepareVariables={() => {
+          return {
+            count: 3,
+            cursor: ''
+          }
+        }}
       />
       <Route
         path=":id"
-        Component={Article}
+        Component={ArticleContainer}
         query={graphql`
             query routes_Article_Query($id:ID!) {
                 article(id: $id) {
@@ -38,7 +43,12 @@ const routeConfig = makeRouteConfig(
                 }
             }
         `}
-        />
+        prepareVariables={(params) => {
+          return {
+            id: btoa(`ArticleNode:${params.id}`)
+          }
+        }}
+      />
     </Route>
   </Route>
 );
