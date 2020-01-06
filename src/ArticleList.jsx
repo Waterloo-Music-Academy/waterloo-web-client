@@ -13,23 +13,13 @@ const ArticleListContainer = createPaginationContainer(
     }
   },
   {
-    data: graphql`
-        fragment ArticleList_articles on RootQuery
-        @argumentDefinitions(
-            count: {type: "Int", defaultValue: 10}
-            cursor: {type: "String"}
-        ) {
-            articles(
-                first: $count
-                after: $cursor
-            ) @connection(key: "ArticleList_articles") {
-                edges {
-                    node {
-                        id
-                        ...Article_article
-                    }
+    articles: graphql`
+        fragment ArticleList_articles on ArticleNodeEdge {
+                node {
+                    id
+                    ...Article_article
                 }
-            }
+            
         }
     `
   },
@@ -52,7 +42,11 @@ const ArticleListContainer = createPaginationContainer(
             $count: Int!
             $cursor: String
         ) {
-            ...ArticleList_articles @arguments(count: $count, cursor: $cursor)
+            articles(first: $count, before: $cursor) @connection(key: "ArticleList_articles") {
+                edges {
+                    ...ArticleList_articles
+                }
+            }
         }
     `
   }

@@ -20,11 +20,13 @@ const routeConfig = makeRouteConfig(
         Component={ArticleListContainer}
         query={graphql`
             query routes_ArticleList_Query(
-                $count: Int!
-                $cursor: String
-            ) {
-                ...ArticleList_articles @arguments(count: $count, cursor: $cursor)
+            $count: Int!
+            $cursor: String
+        ) {
+            articles(first: $count, before:$cursor) @connection(key: "ArticleList_articles") {
+                ...ArticleList_articles
             }
+        }
         `}
         prepareVariables={() => {
           return {
